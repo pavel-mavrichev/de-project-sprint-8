@@ -30,14 +30,14 @@ spark = SparkSession.builder \
 def read_restaurant_stream(spark: SparkSession) -> DataFrame:
 
     schema = StructType([
-        StructField("restaurant_id", StringType()),
-        StructField("adv_campaign_id", StringType()),
-        StructField("adv_campaign_content", StringType()),
-        StructField("adv_campaign_owner", StringType()),
-        StructField("adv_campaign_owner_contact", StringType()),
-        StructField("adv_campaign_datetime_start", DoubleType()),
-        StructField("adv_campaign_datetime_end", DoubleType()),
-        StructField("datetime_created", DoubleType()),
+        StructField("restaurant_id", StringType(), False),
+        StructField("adv_campaign_id", StringType(), False),
+        StructField("adv_campaign_content", StringType(), True),
+        StructField("adv_campaign_owner", StringType(), True),
+        StructField("adv_campaign_owner_contact", StringType(), True),
+        StructField("adv_campaign_datetime_start", DoubleType(), True),
+        StructField("adv_campaign_datetime_end", DoubleType(), True),
+        StructField("datetime_created", DoubleType(), True),
     ])
 
     df = (spark.readStream.format('kafka')
